@@ -1,0 +1,36 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-prev
+            os: ubuntu-18.04
+          - name: linux-latest
+            os: ubuntu-20.04
+          - name: mac-latest
+            os: macos-latest
+          - name: windows-latest
+            os: windows-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+        with:
+          path: hjson-cpp-example
+      - name: Checkout hjson-cpp
+        uses: actions/checkout@v2
+        with:
+          repository: hjson/hjson-cpp
+          path: hjson-cpp
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+      - name: Build hjson-cpp
+        run: cd hjson-cpp && mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && cmake --build .
+        shell: bash
+      - name: Build hjson-cpp-example
+        run: cd hjson-cpp-example && mkdir build && cd build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON .. && cmake --build .
+        shell: bash
