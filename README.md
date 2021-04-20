@@ -1,6 +1,6 @@
 # hjson-cpp-example
 
-[![Build Status](https://github.com/trobro/hjson-cpp-example/workflows/test/badge.svg)](https://github.com/trobro/hjson-cpp-example/actions)
+[![Build Status](https://github.com/hjson/hjson-cpp-example/workflows/test/badge.svg)](https://github.com/hjson/hjson-cpp-example/actions)
 
 This example application showcases best practices for using [Hjson](https://hjson.github.io) configuration files in C++ GUI applications implemented with [Qt 5 Widgets](https://doc.qt.io/qt-5.15/qtwidgets-index.html) and [CMake](https://cmake.org/). The application is tested on Windows, Mac and Ubuntu.
 
