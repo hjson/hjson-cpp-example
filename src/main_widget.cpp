@@ -95,6 +95,11 @@ static SliderCombo _AddSlider(
   tmpEdit->setValidator(new QIntValidator(tmpEdit));
   tmpHL->addWidget(tmpEdit);
 
+  // Use to_int64() to always get a number even if the value is a string or
+  // something else.
+  tmpSlider->setValue(config[szConfig].to_int64());
+  tmpEdit->setText(QString::number(config[szConfig].to_int64()));
+
   QObject::connect(
     tmpSlider,
     &QSlider::valueChanged,
@@ -118,10 +123,6 @@ static SliderCombo _AddSlider(
       }
     }
   );
-
-  // Use to_int64() to always get a number even if the value is a string or
-  // something else.
-  tmpSlider->setValue(config[szConfig].to_int64());
 
   tmpVL->addItem(tmpHL);
   pLayout->addItem(tmpVL);
